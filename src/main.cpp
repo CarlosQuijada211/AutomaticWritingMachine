@@ -47,40 +47,25 @@ void setup() {
   stepper.setCurrentPosition(0);
 }
 
-void loop() {
-  // Move to 3 o'clock position
-  stepper.moveTo(convert_rotational_position_to_steps(0.25));
+// Make one rotation left
+void moveLeft() {
+
+  stepper.moveTo(convert_rotational_position_to_steps(-1));
   while (stepper.distanceToGo() != 0) {
     stepper.run();
   }
-  delay(500);
+}
 
-  // Move to 9 o'clock position
-  stepper.moveTo(convert_rotational_position_to_steps(0.75));
-  while (stepper.distanceToGo() != 0) {
-    stepper.run();
-  }
-  delay(500);
-
-  // Move to 6 o'clock position
-  stepper.moveTo(convert_rotational_position_to_steps(0.50));
-  while (stepper.distanceToGo() != 0) {
-    stepper.run();
-  }
-  delay(500);
-
-  // Move to 12 o'clock position
+// Make one rotation right
+void moveRight() {
   stepper.moveTo(convert_rotational_position_to_steps(1));
   while (stepper.distanceToGo() != 0) {
     stepper.run();
   }
-  delay(500);
+}
 
-  // Move to starting position (will rotate in opposite direction)
-  stepper.moveTo(convert_rotational_position_to_steps(0));
-  while (stepper.distanceToGo() != 0) {
-    stepper.run();
-  }
+void loop() {
   
-  delay(2000);
+  moveRight();
+  delay(500);
 }
